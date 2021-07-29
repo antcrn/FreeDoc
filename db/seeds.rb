@@ -3,5 +3,26 @@
 #
 # Examples:
 #
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+   require 'faker'
+   
+  
+   25.times do 
+       cities = City.create(name:Faker::Address.city)
+   end
+
+   100.times do 
+       doc = Doctor.create(firstname:Faker::Name.first_name, lastname:Faker::Name.last_name, speciality:Faker::Cannabis.medical_use,zip_code:Faker::Address.zip_code,city_id:rand(1 .. 50))
+       pat = Patient.create(firstname:Faker::Name.first_name, lastname:Faker::Name.last_name,city_id:rand(1 .. 50)) 
+   end
+
+   50.times do
+       app= Appointement.create(date:Faker::Date.in_date_period,patient_id:rand(1 .. 50),doctor_id:rand(1 .. 50),city_id:rand(1 .. 25) )
+   end
+
+   25.times do 
+       spec = Speciality.create(name:Faker::Cannabis.medical_use)   
+   end
+
+   25.times do
+      join = JoinDoctorsSpeciality.create(doctor_id:rand(1..50),speciality_id:rand(1..25))
+   end
